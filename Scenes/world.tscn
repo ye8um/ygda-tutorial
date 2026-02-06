@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=4 uid="uid://bta6p1hrlxp2b"]
+
+[ext_resource type="PackedScene" uid="uid://b1ayiw5rtbwns" path="res://Scenes/player.tscn" id="1_go701"]
+[ext_resource type="Texture2D" uid="uid://brhi1d3lis7w8" path="res://assets/tilemap.png" id="2_5a7ea"]
+[ext_resource type="PackedScene" uid="uid://bev8h0f61huqi" path="res://Scenes/death_zone.tscn" id="3_5a7ea"]
+[ext_resource type="PackedScene" uid="uid://c4todbgkbfg8d" path="res://Scenes/enemy.tscn" id="4_8j60k"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8j60k"]
+texture = ExtResource("2_5a7ea")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:5/0 = 0
+2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_fo5ed"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_8j60k")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8j60k"]
+distance = -75.0
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_go701")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(2, 1)
+tile_map_data = PackedByteArray("AAD9/wEAAAAAAAAAAAD+/wEAAAABAAAAAAD//wEAAAABAAAAAAAAAAEAAAABAAAAAAABAAEAAAABAAAAAAACAAEAAAACAAAAAAD9/wIAAAAAAAEAAAD9/wMAAAAAAAEAAAACAAMAAAACAAEAAAACAAIAAAACAAEAAAD+/wIAAAABAAEAAAD//wIAAAABAAEAAAABAAIAAAABAAEAAAAAAAIAAAABAAEAAAD+/wMAAAABAAEAAAD//wMAAAABAAEAAAAAAAMAAAABAAEAAAABAAMAAAABAAEAAAD9/wQAAAAAAAEAAAACAAQAAAACAAEAAAD+/wQAAAABAAEAAAD//wQAAAABAAEAAAAAAAQAAAABAAEAAAABAAQAAAABAAEAAAAFAAEAAAAAAAEAAAAGAAEAAAACAAEAAAAFAAIAAAAAAAEAAAAFAAMAAAAAAAEAAAAFAAQAAAAAAAEAAAAGAAIAAAACAAEAAAAGAAMAAAACAAEAAAAGAAQAAAACAAEAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAEAAAAKAAMAAAAAAAQAAAALAAMAAAABAAQAAAAMAAMAAAABAAQAAAANAAMAAAABAAQAAAAOAAMAAAABAAQAAAAJAAMAAAAAAAEAAAAJAAQAAAAAAAEAAAD9/wUAAAAAAAEAAAAFAAUAAAAAAAEAAAAJAAUAAAAAAAEAAAAGAAUAAAACAAEAAAACAAUAAAACAAEAAAD+/wUAAAABAAEAAAD//wUAAAABAAEAAAAAAAUAAAABAAEAAAABAAUAAAABAAEAAAAPAAEAAAACAAEAAAAPAAIAAAACAAEAAAAPAAMAAAACAAEAAAAPAAQAAAACAAEAAAAPAAUAAAACAAEAAAAKAAQAAAABAAEAAAALAAQAAAABAAEAAAAMAAQAAAABAAEAAAANAAUAAAABAAEAAAAOAAUAAAABAAEAAAAOAAQAAAABAAEAAAANAAQAAAABAAEAAAAMAAUAAAABAAEAAAALAAUAAAABAAEAAAAKAAUAAAABAAEAAAAFAAAAAAAAAAAAAAAGAAAAAAACAAAAAAASAAAAAAABAAIAAAAUAP7/AAABAAIAAAAWAPv/AAABAAIAAAAeAAMAAAABAAIAAAAlAAIAAAABAAIAAAA=")
+tile_set = SubResource("TileSet_fo5ed")
+
+[node name="DeathZone" parent="." instance=ExtResource("3_5a7ea")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
+shape = SubResource("WorldBoundaryShape2D_8j60k")
+
+[node name="enemy" parent="." instance=ExtResource("4_8j60k")]
+position = Vector2(194, 28)

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfds78lgptc3b"]
+
+[ext_resource type="Script" uid="uid://c3euipy78flgu" path="res://Scripts/disc.gd" id="1_y4gon"]
+[ext_resource type="Texture2D" uid="uid://bo4jjk4cuphka" path="res://assets/disc2.png" id="2_3kgxp"]
+[ext_resource type="Texture2D" uid="uid://bjxb7ocp7ng4n" path="res://assets/disc.png" id="3_pi8hj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q20j0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3kgxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pi8hj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_84ueu"]
+radius = 8.0
+
+[node name="Disc" type="Area2D"]
+script = ExtResource("1_y4gon")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_q20j0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_84ueu")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
